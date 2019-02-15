@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .models import Product, ProductImage, Category, SubCategory, Shop
-from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from blog.models import BlogPost
 from django.http import HttpResponse
 from django.core.mail import EmailMessage
@@ -57,8 +56,6 @@ def form(request):
 
 
 
-
-
 	
 def contact(request):
 	return render(request,'contact.html')
@@ -66,35 +63,7 @@ def contact(request):
 def services(request):
 	return render(request,'services.html')
 
-def login(request):
-	if request.method=='GET':
-		
-		if request.user.is_authenticated():
-		
-			return HttpResponse('<p>You are already logged in.</p>')
-		else:
-			template = 'LoginView.html'
 
-			return render(request, template)
-
-	elif request.method=='POST':
-		username = request.POST['username']
-		password = request.POST['password']
-		user = authenticate(request, username=username, password=password)
-		if user is not None:
-			auth_login(request, user)
-			return HttpResponse('<p>You are logged in.</p>')
-			# Redirect to a success page.
-	
-		else:
-			return HttpResponse('<p>Try again,</p>')
-		# Return an 'invalid login' error message.
-
-def logout(request):
-	auth_logout(request)
-	
-	return HttpResponse('You are logged out')
-	
 def details(request, id):
 	categories = Category.objects.all()
 	

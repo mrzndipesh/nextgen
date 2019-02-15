@@ -106,11 +106,18 @@
              {% endfor %}
 
             <div class="card-body">
+              <div class="row">
+              <div class="col-sm-8">
               <h3 class="card-title">{{ products.productName }}</h3>
               <h4>{{products.productPrice}}</h4>
               <p class="card-text">{{products.productDesc}}</p>
               <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
               {{products.productRating}}stars
+              </div>
+              <div class="col-sm-4">
+                <img src="{% static 'img/cart.png' %}" height=50px> &nbsp&nbsp&nbsp&nbsp<button class="btn btn-primary" style="height:50px" >Add to Cart</button>
+              </div>
+            </div>
             </div>
           </div>
                    <!-- /.card -->

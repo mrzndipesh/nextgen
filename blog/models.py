@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.contrib.auth.models import User
+
 # Create your models here.
 class BlogCategory(models.Model):
 	name = models.CharField(max_length=20)
@@ -10,8 +10,8 @@ class BlogCategory(models.Model):
 		return self.name
 
 class BlogPost(models.Model):
-	author = models.ForeignKey(User,on_delete=models.CASCADE)
-	category = models.ForeignKey(BlogCategory, related_name='cat', on_delete=models.CASCADE)
+	author = models.CharField(max_length=50)
+#	category = models.ForeignKey(BlogCategory, related_name='cat', on_delete=models.CASCADE)
 	title = models.CharField(max_length=200)
 	content = models.TextField()
 	created = models.DateTimeField(auto_now_add=True)
@@ -24,5 +24,3 @@ class BlogPost(models.Model):
 	def __str__(self):
 		return self.title
 
-	class Meta:
-		ordering = ('-author','-created',)

@@ -15,13 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from store.views import home, about, contact, services, shop, details, subcategory, form
-from store.views import login, logout
+from user_registration.views import Homepage
+
 from blog.views import blog, blogdetails, blogcategories
+from store.views import home, about, contact, services, shop, details, subcategory, form
+
+#from blog.views import blog, blogdetails, blogcategories
 
 
 urlpatterns = [
@@ -34,10 +37,11 @@ urlpatterns = [
      url(r'^contact', contact, name='contact'),
      url(r'^services', services, name='services'),  
      url(r'^shop', shop, name='shop'),     
-     url(r'^login/', login, name='login'),
-     url(r'^logout/', logout, name='logout'),
+  
      url(r'^blog/', blog, name='blog'),
      path('blogdetails/<id>', blogdetails, name='blogdetails'),
      path('blogcategories/<id>', blogcategories, name='blogcategories'),
      path('product/details/<id>', details, name='details' ),
+     path('', Homepage.as_view(), name="homeview"),
+    path('accounts/', include('user_registration.urls')),     
 ]+ static(settings.STATIC_URL,document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

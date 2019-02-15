@@ -17,7 +17,9 @@
     
     <link href="{% static 'css/modern-business.css' %}" rel="stylesheet">
 
-    
+    <style>
+.mySlides {display:none;}
+</style>
      
 
 
@@ -129,7 +131,7 @@
           <div class="card h-100">
             <h5 class="card-header"><img src="{% static 'img/setup.png' %}" height=31px>Your Complete IT Setup</h4>
             <div class="card-body">
-              <p class="card-text">From Computing Devices to Printing, Networking and Security/Survillence devices. We do it all to set up your workplace on the go along with responsive websites or apps to have online presence among high volume of clients.</p>
+              <p class="card-text">From Computing Devices to Printing, Networking and Security/Survillence devices.   We do it all to set up your workplace on the go along with responsive websites or apps to have online presence among high volume of clients.</p>
             </div>
             <div class="card-footer">
               <a href="{% url 'form' %}" class="btn btn-primary">Request for Quotations</a>
@@ -195,7 +197,9 @@
         <div class="col-lg-3 col-sm-6 portfolio-item">
           <div class="card h-100" style="background-image: {% static 'img/bg-card.jpg' %}">
            {% for img in product.reference.all %}
-            <a href="#"><img class="img-rounded" src="{{ img.image.url }}"  width="330px" height="200px" alt=""></a>
+            <a href="#"><img class="mySlides" src="{{ img.image.url }}"  width="330px" height="200px" alt=""></a>
+            <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
+           
              {% endfor %} 
             <div class="card-body">
               <h4 class="card-title">
@@ -265,6 +269,25 @@
     
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+    <script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
   </body>
 
 </html>

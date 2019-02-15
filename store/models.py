@@ -51,31 +51,33 @@ class SliderImage(models.Model):
 	def __str__(self):
 		return self.title
 
-#class BillGeneration(models.Model):
-#	date = models.DateTimeField(default=datetime.now(), blank=True)
-#	CustomerName = models.CharField(max_length=100)
-#	CustomerAddress = models.CharField(max_length=100)
-#	CustomerContact = models.IntegerField()
-#	ProductName = Product.productName()
-#	ProductPrice = Product.productPrice()
-#	ProductQuantity = models.IntegerField(default=0)
-#	ProductPreTotal = ProductPrice * ProductQuantity
-#	productStock = productStock - ProductQuantity
 
-class DailyEntry(models.Model):
+
+class Entry(models.Model):
 	title = models.CharField(max_length=50)
-	amt = models.IntegerField(default=0)
-	amount = models.IntegerField()
+	quantity = models.IntegerField()
 	date = models.DateTimeField(auto_now_add=True)
-	income = models.BooleanField(default=True)
+	sale = models.BooleanField(default=True)
 	
-	if income==True:
-		amt = amt + amount
+	
 
-	elif income==False:
-		amt = amt - amount
-
-	def __int__(self):
-		return self.amt
+	def __str__(self):
+		return self.title
 
 
+
+#class MonthlySales(models.Model):
+#	item = models.CharField(max_length=50)
+#	quantity = models.IntegerField()
+#	totalsale = models.IntegerField()
+
+#	def __str__(self):
+#		return self.item
+
+#class MonthlyPurchase(models.Model):
+##	item = models.CharField(max_length=50)
+#	quantity = models.IntegerField()
+#	totalsale = models.IntegerField()
+
+#	def __str__(self):
+#		return self.item
